@@ -5,17 +5,17 @@ const socials = [
   {
     icon: "mdi:github",
     label: "GitHub",
-    href: "https://github.com/yourusername", // 👈 replace
+    href: "https://github.com/codewitmustapha", // 👈 replace
   },
   {
     icon: "ic:baseline-discord",
     label: "Discord",
-    href: "https://discord.com/users/yourid", // 👈 replace
+    href: "https://discord.gg/9smHSw5n", // 👈 replace
   },
   {
     icon: "ic:baseline-telegram",
     label: "Telegram",
-    href: "https://t.me/yourusername", // 👈 replace
+    href: "https://t.me/codewitmustapha", // 👈 replace
   },
 ];
 
