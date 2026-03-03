@@ -3,7 +3,7 @@ import useScrollReveal from "./useScrollReveal";
 
 import imperiumImg from "../assets/imperium.png";
 import darulImg from "../assets/darul.PNG";
-import auth4Img from "../assets/auth4.png";
+import newproject5Img from "../assets/newproject5.png";
 
 const projects = [
   {
@@ -18,17 +18,17 @@ const projects = [
     image: darulImg,
     title: "Darul-Arqam Islamic Bookshop",
     desc: "Clean, fully responsive bookshop website hand-coded from scratch. Designed to sell physical books and eBooks rooted in Islamic knowledge and culture.",
-    tags: ["HTML/CSS", "JavaScript"],
+    tags: ["React", "Tailwind CSS"],
     category: "HTML/CSS",
     link: "https://bookshop-usthaz.netlify.app/",
   },
   {
-    image: auth4Img,
-    title: "AI Tool Directory",
-    desc: "A dynamic web app fetching data via API, featuring complex filtering and search functionality built with Vanilla JS.",
-    tags: ["JavaScript", "API"],
+    image: newproject5Img,
+    title: "FlowSync",
+    desc: "A sleek and modern UI for an intelligent productivity platform that helps teams orchestrate workflows with AI-powered context, real-time analytics, and seamless collaboration tools",
+    tags: ["React", "Tailwind CSS"],
     category: "JavaScript",
-    link: "https://your-aitool-url.com",
+    link: "https://flowsync-react.netlify.app/",
   },
 ];
 
