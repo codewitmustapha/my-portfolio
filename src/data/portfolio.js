@@ -1,9 +1,6 @@
 import imperiumImg from "../assets/optimized/imperium.webp";
 import darulImg from "../assets/optimized/darul.webp";
 import flowSyncImg from "../assets/optimized/newproject5.webp";
-import grangeImg from "../assets/optimized/boutique1.webp";
-import phoneRepairImg from "../assets/optimized/lawfirm1.webp";
-import bestServerImg from "../assets/optimized/newproject1.webp";
 
 export const serviceCategories = [
   {
@@ -219,6 +216,96 @@ export const workflowAutomationServices = [
   },
 ];
 
+export const aiAgentExamples = [
+  {
+    title: "Website & WhatsApp customer assistant",
+    situation: "A potential customer asks about services after business hours and wants to know what to do next.",
+    steps: ["Ask a question", "Get an answer from approved business information", "Share details or request a next step", "Hand complex questions to a person"],
+    helpsWith: "Responding to routine questions while keeping a clear human hand-off.",
+    scopeNote: "Website knowledge and WhatsApp access are selected and tested for each project.",
+  },
+  {
+    title: "Appointment booking assistant",
+    situation: "A salon, consultant, or service business receives booking requests while staff are busy.",
+    steps: ["Choose a service", "Share preferred date and time", "Check an approved calendar", "Send confirmation and reminders"],
+    helpsWith: "Collecting complete booking requests and reducing manual back-and-forth.",
+    scopeNote: "Calendar checks and message sending require the relevant integrations to be connected and verified.",
+  },
+  {
+    title: "Sales & lead qualification assistant",
+    situation: "A business wants to understand what a new enquiry needs before a person follows up.",
+    steps: ["Ask about the goal", "Collect timeline and key requirements", "Summarize the request", "Route it to the right person for review"],
+    helpsWith: "Giving the team clearer context for a timely, relevant follow-up.",
+    scopeNote: "Qualification questions and routing rules are agreed with the business; a person can review every enquiry.",
+  },
+  {
+    title: "Online-store product guide",
+    situation: "A shopper is unsure which product or plan fits their needs.",
+    steps: ["Ask what the shopper is looking for", "Answer from approved product details", "Suggest a relevant option", "Link to checkout or a person"],
+    helpsWith: "Helping shoppers compare options without claiming that a product is available unless inventory is connected.",
+    scopeNote: "Catalog, pricing, and stock information are only treated as live when the store integration is connected and tested.",
+  },
+];
+
+export const workflowExamples = [
+  {
+    title: "Capture a lead and update customer records",
+    situation: "A visitor submits a website form and the team needs the enquiry in one reliable place.",
+    steps: ["Receive the form", "Check required details", "Add or update the CRM/spreadsheet record", "Notify the owner for review"],
+    helpsWith: "Reducing manual copying and keeping new enquiries visible to the team.",
+    scopeNote: "CRM or spreadsheet access is configured for the specific tools the business approves.",
+  },
+  {
+    title: "Send useful customer follow-ups",
+    situation: "A customer requests information or books a service and should hear what happens next.",
+    steps: ["Detect the approved event", "Send a confirmation or welcome email", "Create a follow-up reminder", "Stop or adjust follow-ups when the status changes"],
+    helpsWith: "Making follow-ups more consistent without sending messages at the wrong time.",
+    scopeNote: "Message content, timing, consent, and stop rules are agreed before activation.",
+  },
+  {
+    title: "Confirm bookings and send reminders",
+    situation: "A service business wants a clear confirmation process after a customer books.",
+    steps: ["Receive a booking", "Create or update the calendar event", "Send the confirmation", "Send a reminder before the appointment"],
+    helpsWith: "Keeping the customer and team informed about an agreed appointment.",
+    scopeNote: "Calendar and email/messaging steps only run after those systems are connected and verified.",
+  },
+  {
+    title: "Prepare social content for review",
+    situation: "A small team has content ideas but needs a simpler way to turn them into a posting plan.",
+    steps: ["Add a topic", "Prepare a draft caption", "Review and edit it", "Place the approved post in a content calendar"],
+    helpsWith: "Organizing content work so a person remains in control of what gets published.",
+    scopeNote: "Publishing is not automatic unless a suitable platform connection is explicitly configured and tested.",
+  },
+  {
+    title: "Update records and prepare a business report",
+    situation: "A team repeatedly transfers records between tools and compiles a daily or weekly summary.",
+    steps: ["Collect data from an approved source", "Check and map the fields", "Update the spreadsheet or report", "Send the summary for review"],
+    helpsWith: "Reducing repeated data entry and making routine summaries easier to prepare.",
+    scopeNote: "Report logic and source systems are agreed in advance; the example does not promise a particular time saving.",
+  },
+  {
+    title: "Keep an online order moving",
+    situation: "A store wants customers and staff to receive the right updates after an order is placed.",
+    steps: ["Receive an order event", "Send an order confirmation", "Update the order record", "Trigger an approved status or post-purchase follow-up"],
+    helpsWith: "Connecting order information and customer updates across the store workflow.",
+    scopeNote: "Order and payment status are read from the store only when the relevant integration is connected and tested.",
+  },
+  {
+    title: "Process invoices and business documents",
+    situation: "A team receives invoices or forms and needs key details organized for review.",
+    steps: ["Receive an approved document", "Extract agreed fields", "Flag missing or uncertain details", "Send the record for human review"],
+    helpsWith: "Preparing document information for review without skipping the approval step.",
+    scopeNote: "Storage, access permissions, and retention rules are set with the business before handling documents.",
+  },
+  {
+    title: "Connect the business apps you already use",
+    situation: "A new form, booking, or status update needs to reach several tools without retyping.",
+    steps: ["Trigger from a form or approved event", "Create or update a CRM/spreadsheet record", "Notify the right person", "Add a calendar or follow-up task when needed"],
+    helpsWith: "Moving information between forms, email, spreadsheets, calendars, and CRMs.",
+    scopeNote: "Only selected applications are connected; each path is tested before it is described as live.",
+  },
+];
+
 export const portfolioProjects = [
   {
     slug: "imperium-art-decor",
@@ -269,57 +356,6 @@ export const portfolioProjects = [
     ],
     note: "Concept/interface project; not presented as work for a real client.",
   },
-  {
-    slug: "the-grange-ashford",
-    title: "The Grange Ashford",
-    category: "Website Development",
-    kind: "Website Project",
-    description:
-      "A clean, professional WordPress website built for a residential care home in Kent. Designed to showcase services, facilities, and build trust with families seeking senior care.",
-    image: grangeImg,
-    tags: ["WordPress"],
-    link: "https://thegrangeashford.co.uk/",
-    features: [
-      "Services and facilities presentation",
-      "Professional care-home information",
-      "Designed for families seeking senior care",
-    ],
-  },
-  {
-    slug: "phone-repair-more",
-    title: "Phone Repair & More",
-    category: "Website Development",
-    kind: "Website Project",
-    description:
-      "A fully responsive multi-location WordPress website built for a Florida-based device repair company. Designed to showcase services, locations, and drive repair bookings.",
-    image: phoneRepairImg,
-    tags: ["WordPress", "Custom Theme"],
-    features: [
-      "Responsive multi-location website",
-      "Repair services and locations presentation",
-      "Booking-focused website experience",
-    ],
-    note: "The original project URL was malformed, so a live-site link is not shown.",
-  },
-  {
-    slug: "best-server-iptv",
-    title: "Best Server IPTV",
-    category: "Website Development",
-    kind: "Website Project",
-    description:
-      "A fully responsive WordPress WooCommerce website built for an IPTV subscription service. Designed to showcase pricing plans, features, and drive subscription purchases.",
-    image: bestServerImg,
-    tags: ["WordPress", "WooCommerce"],
-    link: "https://bestserveriptv.net/",
-    linkStatus: "unverified",
-    features: [
-      "Responsive WooCommerce website",
-      "Subscription pricing and features presentation",
-      "Purchase-focused store experience",
-    ],
-    note: "The previous live-site address could not be verified, so it is not presented as a confirmed live link.",
-  },
-
 ];
 
 export const testimonials = [

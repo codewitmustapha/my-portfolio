@@ -6,12 +6,12 @@ import ContactSection from "../components/ContactSection";
 import { ProjectCard, SectionHeading, ServiceCard } from "../components/PortfolioUI";
 import { ProjectPlanner, WorkflowTimeAudit } from "../components/InteractiveTools";
 
-const projectFilters = ["All Websites", "React / Tailwind", "WordPress"];
+const projectFilters = ["All Work", "Websites", "Interface Concepts"];
 
 function matchesProjectFilter(project, filter) {
-  if (filter === "All Websites") return true;
-  if (filter === "React / Tailwind") return project.tags.some((tag) => ["React", "Tailwind", "Tailwind CSS"].includes(tag));
-  if (filter === "WordPress") return project.tags.some((tag) => tag.startsWith("WordPress"));
+  if (filter === "All Work") return true;
+  if (filter === "Websites") return project.kind === "Website Project";
+  if (filter === "Interface Concepts") return project.kind === "Concept Project";
   return false;
 }
 
@@ -20,17 +20,17 @@ function HeroWorkGallery() {
   const [main, ...side] = featured;
 
   return (
-    <div className="hero-gallery" aria-label="Selected screenshots from genuine website projects">
-      <div className="hero-gallery-topline"><span>SELECTED WEBSITE WORK</span><span>01 — 03</span></div>
+    <div className="hero-gallery" aria-label="Selected screenshots from two website projects and one interface concept">
+      <div className="hero-gallery-topline"><span>SELECTED WORK</span><span>01 — 03</span></div>
       <div className="hero-gallery-board">
         <Link to={`/projects/${main.slug}`} className="hero-gallery-main" aria-label={`View ${main.title}`}>
-          <img src={main.image} alt={`${main.title} website screenshot`} fetchPriority="high" />
+          <img src={main.image} alt={`${main.title} ${main.kind === "Concept Project" ? "interface concept" : "website"} screenshot`} fetchPriority="high" />
           <span className="hero-image-caption"><strong>{main.title}</strong><small>{main.tags.join(" · ")}</small></span>
         </Link>
         <div className="hero-gallery-stack">
           {side.map((project) => (
             <Link to={`/projects/${project.slug}`} className="hero-gallery-small" key={project.slug} aria-label={`View ${project.title}`}>
-              <img src={project.image} alt={`${project.title} website screenshot`} />
+              <img src={project.image} alt={`${project.title} ${project.kind === "Concept Project" ? "interface concept" : "website"} screenshot`} />
               <span className="hero-image-caption"><strong>{project.title}</strong><small>{project.kind === "Concept Project" ? "Interface concept" : project.tags.join(" · ")}</small></span>
             </Link>
           ))}
@@ -103,7 +103,7 @@ function TestimonialsSection() {
 }
 
 export default function Home() {
-  const [activeFilter, setActiveFilter] = useState("All Websites");
+  const [activeFilter, setActiveFilter] = useState("All Work");
   const visibleProjects = useMemo(() => portfolioProjects.filter((project) => matchesProjectFilter(project, activeFilter)), [activeFilter]);
 
   return (
@@ -141,10 +141,10 @@ export default function Home() {
       <section className="projects-section section-pad" id="projects">
         <div className="section-container">
           <div className="projects-heading section-heading-row">
-            <SectionHeading eyebrow="Selected website work" title="Real projects. Clear details." copy="Explore published websites and one clearly identified interface concept, with clear notes on what each project includes." />
-            <span className="section-aside">WEBSITE PROJECTS</span>
+            <SectionHeading eyebrow="Selected work" title="Work, clearly described." copy="Explore two website projects and one clearly identified interface concept. Each page explains what it is—and what it isn't." />
+            <span className="section-aside">03 SELECTED WORKS</span>
           </div>
-          <div className="project-filters" role="group" aria-label="Filter genuine website projects">
+          <div className="project-filters" role="group" aria-label="Filter selected work">
             {projectFilters.map((filter) => <button key={filter} type="button" className={activeFilter === filter ? "filter-button is-active" : "filter-button"} aria-pressed={activeFilter === filter} onClick={() => setActiveFilter(filter)}>{filter}</button>)}
           </div>
           <div className="project-grid" aria-live="polite">

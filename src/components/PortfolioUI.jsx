@@ -41,7 +41,7 @@ export function ProjectCard({ project }) {
         <div className="project-feature-list">{project.features.slice(0, 2).map((feature) => <span key={feature}>{feature}</span>)}</div>
         <div className="project-card-actions">
           <Link to={`/projects/${project.slug}`} className="text-link">View project <span aria-hidden="true">→</span></Link>
-          {project.link && project.linkStatus !== "unverified" && <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-link-muted">Live site <span aria-hidden="true">↗</span></a>}
+          {project.link && <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-link-muted">{project.kind === "Concept Project" ? "View concept" : "Live site"} <span aria-hidden="true">↗</span></a>}
         </div>
       </div>
     </article>
@@ -59,6 +59,39 @@ export function WorkflowDiagram({ steps = [] }) {
         </li>
       ))}
     </ol>
+  );
+}
+
+export function SolutionExampleGrid({ items = [], eyebrow, title, copy }) {
+  return (
+    <section className="section-pad solution-examples" id="real-world-examples">
+      <div className="section-container">
+        <SectionHeading eyebrow={eyebrow} title={title} copy={copy} />
+        <div className="solution-example-grid">
+          {items.map((example, index) => (
+            <article className="solution-example-card" key={example.title}>
+              <div className="solution-example-meta">
+                <span className="solution-example-number">0{index + 1}</span>
+                <span className="solution-example-badge">Illustrative example</span>
+              </div>
+              <h3>{example.title}</h3>
+              <p className="solution-example-situation">{example.situation}</p>
+              <p className="solution-example-label">Typical flow</p>
+              <ol className="solution-example-steps">
+                {example.steps.map((step, stepIndex) => (
+                  <li key={step}>
+                    <span>{String(stepIndex + 1).padStart(2, "0")}</span>
+                    <p>{step}</p>
+                  </li>
+                ))}
+              </ol>
+              <p className="solution-example-outcome"><strong>What this helps with</strong>{example.helpsWith}</p>
+              <p className="solution-example-note">{example.scopeNote}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 

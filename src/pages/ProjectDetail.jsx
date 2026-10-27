@@ -8,22 +8,18 @@ export default function ProjectDetail() {
   const project = portfolioProjects.find((item) => item.slug === slug);
   if (!project) return <NotFound />;
 
-  const canVisit = Boolean(project.link && project.linkStatus !== "unverified");
-  const linkNote = project.linkStatus === "unverified"
-    ? "The previous external address could not be verified, so it is not presented as a confirmed live link."
-    : !project.link
-      ? "The source project URL was malformed, so a live-site link is not shown."
-      : "";
+  const canVisit = Boolean(project.link);
+  const linkNote = "A live link is not available for this project.";
 
   return (
     <>
       <section className="project-detail-hero section-pad">
         <div className="section-container">
-          <Link to="/#projects" className="breadcrumb">← Back to selected website work</Link>
+          <Link to="/#projects" className="breadcrumb">← Back to selected work</Link>
           <div className="project-detail-meta"><Pill>{project.kind}</Pill><span>{project.tags.join(" · ")}</span></div>
           <h1>{project.title}</h1>
           <p className="detail-lead">{project.description}</p>
-          <div className="project-detail-image"><img src={project.image} alt={`${project.title} website screenshot`} /></div>
+          <div className="project-detail-image"><img src={project.image} alt={`${project.title} ${project.kind === "Concept Project" ? "interface concept" : "website"} screenshot`} /></div>
         </div>
       </section>
       <section className="project-story-section section-pad">
@@ -35,7 +31,7 @@ export default function ProjectDetail() {
       <section className="project-detail-footer section-pad">
         <div className="section-container project-detail-footer-inner">
           <Link className="text-link" to="/#projects">← Return to selected work</Link>
-          {canVisit ? <a className="button button-secondary" href={project.link} target="_blank" rel="noopener noreferrer">Visit live site <span aria-hidden="true">↗</span></a> : <span className="unavailable-link-note">{linkNote}</span>}
+          {canVisit ? <a className="button button-secondary" href={project.link} target="_blank" rel="noopener noreferrer">{project.kind === "Concept Project" ? "View interface concept" : "Visit live site"} <span aria-hidden="true">↗</span></a> : <span className="unavailable-link-note">{linkNote}</span>}
           <Link className="button button-primary" to="/#contact">Let’s Work Together <span aria-hidden="true">↗</span></Link>
         </div>
       </section>

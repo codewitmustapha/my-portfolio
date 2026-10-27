@@ -1,18 +1,24 @@
 import { Link, useParams } from "react-router-dom";
-import { aiAgentServiceGroups, serviceCategories, websiteDevelopmentServices, workflowAutomationServices, portfolioProjects } from "../data/portfolio";
-import { ProjectCard, SectionHeading, WorkflowDiagram } from "../components/PortfolioUI";
+import { aiAgentExamples, aiAgentServiceGroups, serviceCategories, websiteDevelopmentServices, workflowAutomationServices, workflowExamples, portfolioProjects } from "../data/portfolio";
+import { ProjectCard, SectionHeading, SolutionExampleGrid, WorkflowDiagram } from "../components/PortfolioUI";
 import NotFound from "./NotFound";
 
 const serviceContent = {
   "website-development": {
     items: websiteDevelopmentServices,
     intro: "Build a useful, clear web presence that supports how customers discover and choose your business.",
-    related: ["imperium-art-decor", "darul-arqam-islamic-bookshop", "flowsync", "the-grange-ashford", "phone-repair-more", "best-server-iptv"],
+    related: ["imperium-art-decor", "darul-arqam-islamic-bookshop", "flowsync"],
     toolHref: "/#project-planner",
     toolLabel: "Use the project planner",
   },
   "ai-agent-development": {
     groups: aiAgentServiceGroups,
+    examples: {
+      items: aiAgentExamples,
+      eyebrow: "Real-world AI agent examples",
+      title: "What an assistant could handle in a typical workday.",
+      copy: "These are illustrative solution examples, not completed client projects or live agents. Knowledge, channel access, privacy, and human hand-off are scoped for each build.",
+    },
     intro: "Give customers and teams a practical assistant for the questions and tasks they handle every day.",
     note: "AI agents are scoped against approved knowledge, the chosen model and channel, privacy requirements, and a clear human hand-off. Any external system integration is agreed and verified for the specific project.",
     toolHref: "/#project-planner",
@@ -20,6 +26,12 @@ const serviceContent = {
   },
   "business-workflow-automation": {
     items: workflowAutomationServices,
+    examples: {
+      items: workflowExamples,
+      eyebrow: "Real-world automation examples",
+      title: "Everyday processes, connected step by step.",
+      copy: "These examples show possible workflows, not completed client cases or connected systems. Each app, approval step, and message is agreed and tested for the business using it.",
+    },
     intro: "Connect the tools you already use and make repeatable business processes easier to run.",
     toolHref: "/#workflow-audit",
     toolLabel: "Run the workflow time audit",
@@ -47,8 +59,10 @@ export default function ServiceDetail() {
           <p className="detail-lead">{content.intro}</p>
           <div className="detail-hero-note"><span>Designed around your process</span><span>Clear scope · Practical build · Thoughtful handover</span></div>
           {content.note && <p className="service-accuracy-note">{content.note}</p>}
+          {content.examples && <a className="detail-example-link" href="#real-world-examples">See real-world examples <span aria-hidden="true">↓</span></a>}
         </div>
       </section>
+      {content.examples && <SolutionExampleGrid {...content.examples} />}
       <section className="section-pad service-detail-section">
         <div className="section-container">
           <SectionHeading eyebrow="Service menu" title="A focused set of ways I can help." copy="Each engagement starts with your goals, existing tools, and the experience you want customers or staff to have." />
