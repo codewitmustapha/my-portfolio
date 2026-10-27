@@ -3,6 +3,9 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    allowedHosts: [".manus.computer"],
+  },
   assetsInclude: ["**/*.PNG", "**/*.JPG", "**/*.JPEG"],
   resolve: {
     dedupe: ["react", "react-dom"],
