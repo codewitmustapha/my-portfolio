@@ -16,7 +16,7 @@ function matchesProjectFilter(project, filter) {
 }
 
 function HeroWorkGallery() {
-  const featured = portfolioProjects.slice(0, 3);
+  const featured = [portfolioProjects[1], portfolioProjects[0], portfolioProjects[2]];
   const [main, ...side] = featured;
 
   return (
@@ -138,19 +138,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="tools-section section-pad" id="tools">
-        <div className="section-container">
-          <div className="tools-intro">
-            <SectionHeading eyebrow="Practical tools" title="Make your next step clearer." copy="Build a project starter from your goals, or calculate the time tied up in a recurring task." />
-            <p className="tools-intro-note">A clearer first conversation starts with a good question.</p>
-          </div>
-          <div className="tools-grid">
-            <ProjectPlanner />
-            <WorkflowTimeAudit />
-          </div>
-        </div>
-      </section>
-
       <section className="projects-section section-pad" id="projects">
         <div className="section-container">
           <div className="projects-heading section-heading-row">
@@ -162,6 +149,19 @@ export default function Home() {
           </div>
           <div className="project-grid" aria-live="polite">
             {visibleProjects.map((project) => <ProjectCard key={project.slug} project={project} />)}
+          </div>
+        </div>
+      </section>
+
+      <section className="tools-section section-pad" id="tools">
+        <div className="section-container">
+          <div className="tools-intro">
+            <SectionHeading eyebrow="Practical tools" title="Make your next step clearer." copy="Build a project starter from your goals, or calculate the time tied up in a recurring task." />
+            <p className="tools-intro-note">A clearer first conversation starts with a good question.</p>
+          </div>
+          <div className="tools-grid">
+            <ProjectPlanner />
+            <WorkflowTimeAudit />
           </div>
         </div>
       </section>
