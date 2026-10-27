@@ -26,7 +26,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <RouteEffects />
-      <div className="site-shell">
+      <div className="site-shell" id="top">
         <a className="skip-link" href="#main-content">Skip to content</a>
         <Navbar />
         <main id="main-content" className="main-content">

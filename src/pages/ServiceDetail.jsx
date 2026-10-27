@@ -8,16 +8,21 @@ const serviceContent = {
     items: websiteDevelopmentServices,
     intro: "Build a useful, clear web presence that supports how customers discover and choose your business.",
     related: ["imperium-art-decor", "darul-arqam-islamic-bookshop", "flowsync", "the-grange-ashford", "phone-repair-more", "best-server-iptv"],
+    toolHref: "/#project-planner",
+    toolLabel: "Use the project planner",
   },
   "ai-agent-development": {
     groups: aiAgentServiceGroups,
     intro: "Give customers and teams a practical assistant for the questions and tasks they handle every day.",
-    related: ["website-support-sales-agent", "whatsapp-telegram-assistant", "appointment-booking-system"],
+    note: "AI agents are scoped against approved knowledge, the chosen model and channel, privacy requirements, and a clear human hand-off. Any external system integration is agreed and verified for the specific project.",
+    toolHref: "/#project-planner",
+    toolLabel: "Outline an AI agent project",
   },
   "business-workflow-automation": {
     items: workflowAutomationServices,
     intro: "Connect the tools you already use and make repeatable business processes easier to run.",
-    related: ["lead-crm-automation", "content-social-automation", "end-to-end-business-workflow"],
+    toolHref: "/#workflow-audit",
+    toolLabel: "Run the workflow time audit",
   },
 };
 
@@ -30,17 +35,18 @@ export default function ServiceDetail() {
   const category = serviceCategories.find((item) => item.slug === slug);
   const content = serviceContent[slug];
   if (!category || !content) return <NotFound />;
-  const relatedProjects = portfolioProjects.filter((project) => content.related.includes(project.slug));
+  const relatedProjects = content.related ? portfolioProjects.filter((project) => content.related.includes(project.slug)) : [];
 
   return (
     <>
       <section className="detail-hero section-pad">
         <div className="section-container">
           <Link to="/#services" className="breadcrumb">← All service categories</Link>
-          <p className="eyebrow"><span className="eyebrow-dot" />{category.shortLabel || category.title}</p>
+          <p className="eyebrow">{category.shortLabel || category.title}</p>
           <h1>{category.title}</h1>
           <p className="detail-lead">{content.intro}</p>
           <div className="detail-hero-note"><span>Designed around your process</span><span>Clear scope · Practical build · Thoughtful handover</span></div>
+          {content.note && <p className="service-accuracy-note">{content.note}</p>}
         </div>
       </section>
       <section className="section-pad service-detail-section">
@@ -51,12 +57,15 @@ export default function ServiceDetail() {
       </section>
       <section className="section-pad workflow-explainer">
         <div className="section-container workflow-explainer-grid">
-          <div><SectionHeading eyebrow="A sensible starting point" title="Make the process clearer before adding complexity." copy="We map the current experience, identify where effort is lost, then choose the smallest useful improvement. Integrations are scoped and tested before being described as live." /></div>
+          <div><SectionHeading eyebrow="A sensible starting point" title="Make the process clearer before adding complexity." copy="Map the current experience, identify where effort is lost, then choose the smallest useful improvement. Integrations are scoped and tested before being described as live." /></div>
           <WorkflowDiagram steps={["Understand the need", "Choose the right solution", "Build and connect", "Test with real scenarios", "Deliver with guidance"]} />
         </div>
       </section>
-      {relatedProjects.length > 0 && <section className="section-pad related-work-section"><div className="section-container"><SectionHeading eyebrow="Related work" title="Explore projects in this area." /><div className="project-grid related-project-grid">{relatedProjects.map((project) => <ProjectCard key={project.slug} project={project} />)}</div></div></section>}
-      <section className="detail-cta section-pad"><div className="section-container detail-cta-inner"><div><p className="eyebrow"><span className="eyebrow-dot" />NEXT STEP</p><h2>Have a challenge in mind?</h2><p>Share a little about your business and we can work out what fits.</p></div><Link className="button button-primary" to="/#contact">Let's Work Together <span aria-hidden="true">↗</span></Link></div></section>
+      <section className="service-tool-cta section-pad">
+        <div className="section-container service-tool-cta-inner"><div><p className="eyebrow">A useful first step</p><h2>Start with your actual process.</h2><p>Use a short planning tool to organize the questions before deciding what to build.</p></div><Link className="button button-primary" to={content.toolHref}>{content.toolLabel} <span aria-hidden="true">↗</span></Link></div>
+      </section>
+      {relatedProjects.length > 0 && <section className="section-pad related-work-section"><div className="section-container"><SectionHeading eyebrow="Related website work" title="Explore projects in this area." /><div className="project-grid related-project-grid">{relatedProjects.map((project) => <ProjectCard key={project.slug} project={project} />)}</div></div></section>}
+      <section className="detail-cta section-pad"><div className="section-container detail-cta-inner"><div><p className="eyebrow">NEXT STEP</p><h2>Have a challenge in mind?</h2><p>Share a little about your business and we can work out what fits.</p></div><Link className="button button-primary" to="/#contact">Let’s Work Together <span aria-hidden="true">↗</span></Link></div></section>
     </>
   );
 }

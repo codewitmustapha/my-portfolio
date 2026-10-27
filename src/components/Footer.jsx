@@ -1,65 +1,21 @@
-const socials = [
-  {
-    icon: "mdi:github",
-    label: "GitHub",
-    href: "https://github.com/codewitmustapha",
-  },
-  {
-    icon: "ic:baseline-discord",
-    label: "Discord",
-    href: "https://discord.gg/9smHSw5n",
-  },
-  {
-    icon: "ic:baseline-telegram",
-    label: "Telegram",
-    href: "https://t.me/codewitmustapha",
-  },
-];
+import { Link } from "react-router-dom";
+import { contactLinks } from "../data/portfolio";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-[#080c14] py-8 relative z-20">
-      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-        {/* Logo — matches Navbar style */}
-        <a
-          href="#"
-          className="flex items-center gap-0.5 text-base font-semibold tracking-tight"
-        >
-          <span className="text-cyan-400 font-light">&lt;</span>
-          <span className="text-white font-bold px-1">codewithmustapha</span>
-          <span className="text-cyan-400 font-light">/&gt;</span>
-        </a>
-
-        {/* Social Icons */}
-        <div className="flex items-center gap-4">
-          {socials.map(({ icon, label, href }) => (
-            <a
-              key={icon}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              title={label}
-              className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-500/50 transition"
-            >
-              <iconify-icon icon={icon} width="18"></iconify-icon>
-            </a>
-          ))}
+    <footer className="site-footer">
+      <div className="section-container footer-inner">
+        <div className="footer-main">
+          <Link to="/" className="brand-mark footer-brand" aria-label="codewitmustapha home"><span className="brand-bracket">&lt;</span><span className="brand-name">codewitmustapha</span><span className="brand-bracket">/&gt;</span></Link>
+          <p>Websites, useful AI, and workflows—built around the way your business works.</p>
         </div>
-
-        {/* Copyright + Back to Top */}
-        <div className="flex items-center gap-4 text-xs">
-          <span className="text-slate-600">
-            &copy; {new Date().getFullYear()} codewithmustapha. All rights
-            reserved.
-          </span>
-          <a
-            href="#"
-            className="text-cyan-400 hover:text-cyan-300 transition flex items-center gap-1"
-          >
-            Top <iconify-icon icon="solar:arrow-up-linear"></iconify-icon>
-          </a>
+        <nav className="footer-nav" aria-label="Footer navigation">
+          <Link to="/#services">Services</Link><Link to="/#tools">Planning tools</Link><Link to="/#projects">Selected work</Link><Link to="/#contact">Contact</Link>
+        </nav>
+        <div className="footer-socials" aria-label="Contact and social links">
+          {contactLinks.map(({ label, href }) => <a key={label} href={href} target="_blank" rel="noopener noreferrer">{label}<span aria-hidden="true">↗</span></a>)}
         </div>
+        <div className="footer-bottom"><span>© {new Date().getFullYear()} codewitmustapha</span><span>Lagos, Nigeria · Available for remote projects</span><a href="#top">Back to top ↑</a></div>
       </div>
     </footer>
   );

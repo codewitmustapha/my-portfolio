@@ -1,25 +1,42 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import profileImage from "../assets/profile1.jpeg";
 import { serviceCategories, portfolioProjects, processSteps, testimonials, about } from "../data/portfolio";
-import ContactSectionComponent from "../components/ContactSection";
+import ContactSection from "../components/ContactSection";
 import { ProjectCard, SectionHeading, ServiceCard } from "../components/PortfolioUI";
+import { ProjectPlanner, WorkflowTimeAudit } from "../components/InteractiveTools";
 
-const filters = ["All Projects", "Website Development", "AI Agents", "Workflow Automation"];
+const projectFilters = ["All Websites", "React / Tailwind", "WordPress"];
 
-function HeroWorkflow() {
+function matchesProjectFilter(project, filter) {
+  if (filter === "All Websites") return true;
+  if (filter === "React / Tailwind") return project.tags.some((tag) => ["React", "Tailwind", "Tailwind CSS"].includes(tag));
+  if (filter === "WordPress") return project.tags.some((tag) => tag.startsWith("WordPress"));
+  return false;
+}
+
+function HeroWorkGallery() {
+  const featured = portfolioProjects.slice(0, 3);
+  const [main, ...side] = featured;
+
   return (
-    <div className="hero-visual" aria-label="Illustration of a business inquiry moving through a website, AI agent and follow-up workflow">
-      <div className="hero-visual-glow" />
-      <div className="hero-visual-head"><span className="eyebrow-dot" /> SYSTEMS THAT WORK TOGETHER <span className="hero-visual-live">● Preview</span></div>
-      <div className="hero-visual-title"><span>From first click</span><strong>to useful action.</strong></div>
-      <div className="hero-flow-line" aria-hidden="true" />
-      <div className="hero-flow-nodes">
-        <div className="hero-flow-node"><span className="flow-icon flow-icon-browser">↗</span><span>Website</span><small>New inquiry</small></div>
-        <div className="hero-flow-node hero-flow-node-active"><span className="flow-icon flow-icon-agent">✳</span><span>AI agent</span><small>Understands</small></div>
-        <div className="hero-flow-node"><span className="flow-icon flow-icon-action">✓</span><span>Next step</span><small>Follow-up</small></div>
+    <div className="hero-gallery" aria-label="Selected screenshots from genuine website projects">
+      <div className="hero-gallery-topline"><span>SELECTED WEBSITE WORK</span><span>01 — 03</span></div>
+      <div className="hero-gallery-board">
+        <Link to={`/projects/${main.slug}`} className="hero-gallery-main" aria-label={`View ${main.title}`}>
+          <img src={main.image} alt={`${main.title} website screenshot`} fetchPriority="high" />
+          <span className="hero-image-caption"><strong>{main.title}</strong><small>{main.tags.join(" · ")}</small></span>
+        </Link>
+        <div className="hero-gallery-stack">
+          {side.map((project) => (
+            <Link to={`/projects/${project.slug}`} className="hero-gallery-small" key={project.slug} aria-label={`View ${project.title}`}>
+              <img src={project.image} alt={`${project.title} website screenshot`} />
+              <span className="hero-image-caption"><strong>{project.title}</strong><small>{project.kind === "Concept Project" ? "Interface concept" : project.tags.join(" · ")}</small></span>
+            </Link>
+          ))}
+        </div>
       </div>
-      <div className="hero-visual-bottom"><span className="hero-status"><i /> One clear path, end to end</span><span className="hero-visual-id">FLOW / 001</span></div>
-      <div className="hero-floating-card"><span className="floating-icon">↗</span><div><strong>Less busywork</strong><small>More time for real work</small></div><span className="floating-check">✓</span></div>
+      <div className="hero-gallery-foot"><span>Real work, shown as it is.</span><Link to="/#projects">See all selected work <span aria-hidden="true">↘</span></Link></div>
     </div>
   );
 }
@@ -33,12 +50,12 @@ function AboutSection() {
           <div className="about-image-caption"><span className="status-indicator" /> Currently accepting freelance projects</div>
         </div>
         <div className="about-copy">
-          <SectionHeading eyebrow="A little about me" title="Practical digital solutions, built around the way your business works." />
+          <SectionHeading eyebrow="A little about me" title="Thoughtful digital work, built around real business needs." />
           <p className="about-lead">I’m Salawudeen Mustapha, a developer based in Lagos, Nigeria. I build websites, AI agents, and automated workflows that solve practical business problems.</p>
-          <p className="about-body">From improving a customer’s first visit to connecting repetitive tasks behind the scenes, I focus on useful digital experiences that are clear to use and easier to manage.</p>
+          <p className="about-body">I focus on clear customer experiences, useful tools, and systems that are easier to understand and manage. Every project starts with the process and the people who will use it.</p>
           <div className="about-facts">
             <div><span>BASED IN</span><strong>{about.location}</strong></div>
-            <div><span>WORKING STYLE</span><strong>{about.workStyle}</strong></div>
+            <div><span>WORKING STYLE</span><strong>Remote · Flexible · Reliable</strong></div>
           </div>
           <div className="tool-list"><span className="tool-label">TOOLS & TECHNOLOGIES</span><div>{about.tools.map((tool) => <span key={tool}>{tool}</span>)}</div></div>
         </div>
@@ -86,8 +103,8 @@ function TestimonialsSection() {
 }
 
 export default function Home() {
-  const [activeFilter, setActiveFilter] = useState("All Projects");
-  const visibleProjects = useMemo(() => activeFilter === "All Projects" ? portfolioProjects : portfolioProjects.filter((project) => project.category === activeFilter), [activeFilter]);
+  const [activeFilter, setActiveFilter] = useState("All Websites");
+  const visibleProjects = useMemo(() => portfolioProjects.filter((project) => matchesProjectFilter(project, activeFilter)), [activeFilter]);
 
   return (
     <>
@@ -95,17 +112,17 @@ export default function Home() {
         <div className="hero-grid-bg" aria-hidden="true" />
         <div className="section-container hero-layout">
           <div className="hero-copy">
-            <p className="eyebrow hero-eyebrow"><span className="eyebrow-dot" />WEBSITE DEVELOPMENT <b>•</b> AI AGENTS <b>•</b> WORKFLOW AUTOMATION</p>
+            <p className="eyebrow hero-eyebrow">WEBSITE DEVELOPMENT <b>•</b> AI AGENTS <b>•</b> WORKFLOW AUTOMATION</p>
             <h1>Websites That Convert.<br /><span>AI That Automates.</span></h1>
             <p className="hero-description">I build modern websites, AI agents, and automated business workflows that help businesses attract customers, save time, and grow.</p>
             <p className="hero-description hero-description-secondary">From high-performing websites to intelligent AI solutions, I turn repetitive tasks into automated systems that work smarter for your business.</p>
             <div className="hero-actions">
-              <a className="button button-primary" href="#contact">Let's Work Together <span aria-hidden="true">↗</span></a>
+              <a className="button button-primary" href="#contact">Let’s Work Together <span aria-hidden="true">↗</span></a>
               <a className="button button-quiet" href="#projects">Explore My Work <span aria-hidden="true">↓</span></a>
             </div>
             <div className="hero-footnote"><span className="status-indicator" /> Lagos, Nigeria <span className="footnote-separator">·</span> Available for freelance projects</div>
           </div>
-          <HeroWorkflow />
+          <HeroWorkGallery />
         </div>
       </section>
 
@@ -121,26 +138,38 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="tools-section section-pad" id="tools">
+        <div className="section-container">
+          <div className="tools-intro">
+            <SectionHeading eyebrow="Practical tools" title="Make your next step clearer." copy="Build a project starter from your goals, or calculate the time tied up in a recurring task." />
+            <p className="tools-intro-note">A clearer first conversation starts with a good question.</p>
+          </div>
+          <div className="tools-grid">
+            <ProjectPlanner />
+            <WorkflowTimeAudit />
+          </div>
+        </div>
+      </section>
+
       <section className="projects-section section-pad" id="projects">
         <div className="section-container">
           <div className="projects-heading section-heading-row">
-            <SectionHeading eyebrow="Selected projects" title="Built for real needs. Ready to explore." copy="A mix of published website work and clearly labeled AI and automation demos." />
-            <span className="section-aside">WORK / DEMOS</span>
+            <SectionHeading eyebrow="Selected website work" title="Real projects. Clear details." copy="Explore published websites and one clearly identified interface concept, with clear notes on what each project includes." />
+            <span className="section-aside">WEBSITE PROJECTS</span>
           </div>
-          <div className="project-filters" role="group" aria-label="Filter projects by service category">
-            {filters.map((filter) => <button key={filter} type="button" className={activeFilter === filter ? "filter-button is-active" : "filter-button"} aria-pressed={activeFilter === filter} onClick={() => setActiveFilter(filter)}>{filter}</button>)}
+          <div className="project-filters" role="group" aria-label="Filter genuine website projects">
+            {projectFilters.map((filter) => <button key={filter} type="button" className={activeFilter === filter ? "filter-button is-active" : "filter-button"} aria-pressed={activeFilter === filter} onClick={() => setActiveFilter(filter)}>{filter}</button>)}
           </div>
           <div className="project-grid" aria-live="polite">
             {visibleProjects.map((project) => <ProjectCard key={project.slug} project={project} />)}
           </div>
-          {!visibleProjects.length && <p className="empty-state">No projects in this category yet.</p>}
         </div>
       </section>
 
       <ProcessSection />
       <AboutSection />
       <TestimonialsSection />
-      <ContactSectionComponent />
+      <ContactSection />
     </>
   );
 }
