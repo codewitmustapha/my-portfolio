@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const navItems = [
   { label: "Services", to: "/#services" },
+  { label: "Solutions", to: "/services/business-workflow-automation#real-world-examples", solution: true },
   { label: "Selected work", to: "/#projects" },
   { label: "Tools", to: "/#tools" },
   { label: "Process", to: "/#process" },
@@ -35,7 +36,7 @@ export default function Navbar() {
         </button>
         <nav id="primary-navigation" className={`primary-nav ${open ? "is-open" : ""}`} aria-label="Main navigation">
           {navItems.map((item) => (
-            <Link key={item.label} to={item.to} onClick={close} className="nav-link">
+              <Link key={item.label} to={item.to} onClick={close} className="nav-link" aria-current={item.solution && location.pathname === "/services/business-workflow-automation" ? "page" : undefined}>
               {item.label}
             </Link>
           ))}

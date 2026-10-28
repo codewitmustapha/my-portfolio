@@ -51,7 +51,7 @@ function AboutSection() {
         </div>
         <div className="about-copy">
           <SectionHeading eyebrow="A little about me" title="Thoughtful digital work, built around real business needs." />
-          <p className="about-lead">I’m Salawudeen Mustapha, a developer based in Lagos, Nigeria. I build websites, AI agents, and automated workflows that solve practical business problems.</p>
+          <p className="about-lead">I’m Salawudeen Mustapha, a developer based in Lagos, Nigeria. I build websites and practical customer-support and business workflows that solve real problems.</p>
           <p className="about-body">I focus on clear customer experiences, useful tools, and systems that are easier to understand and manage. Every project starts with the process and the people who will use it.</p>
           <div className="about-facts">
             <div><span>BASED IN</span><strong>{about.location}</strong></div>
@@ -112,10 +112,10 @@ export default function Home() {
         <div className="hero-grid-bg" aria-hidden="true" />
         <div className="section-container hero-layout">
           <div className="hero-copy">
-            <p className="eyebrow hero-eyebrow">WEBSITE DEVELOPMENT <b>•</b> AI AGENTS <b>•</b> WORKFLOW AUTOMATION</p>
+            <p className="eyebrow hero-eyebrow">WEBSITE DEVELOPMENT <b>•</b> CUSTOMER SUPPORT AI <b>•</b> WORKFLOW AUTOMATION</p>
             <h1>Websites That Convert.<br /><span>AI That Automates.</span></h1>
-            <p className="hero-description">I build modern websites, AI agents, and automated business workflows that help businesses attract customers, save time, and grow.</p>
-            <p className="hero-description hero-description-secondary">From high-performing websites to intelligent AI solutions, I turn repetitive tasks into automated systems that work smarter for your business.</p>
+            <p className="hero-description">I build modern websites, customer-support and lead-handling solutions, and connected workflows that help businesses respond clearly and reduce repeat work.</p>
+            <p className="hero-description hero-description-secondary">Start with the problem—missed enquiries, repetitive questions, or manual follow-ups—and shape a practical digital solution around it.</p>
             <div className="hero-actions">
               <a className="button button-primary" href="#contact">Let’s Work Together <span aria-hidden="true">↗</span></a>
               <a className="button button-quiet" href="#projects">Explore My Work <span aria-hidden="true">↓</span></a>

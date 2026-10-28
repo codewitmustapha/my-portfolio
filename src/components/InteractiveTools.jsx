@@ -2,16 +2,16 @@ import { useMemo, useState } from "react";
 
 const serviceOptions = [
   { value: "website", label: "Website development" },
-  { value: "agent", label: "AI agent development" },
+  { value: "customer-support", label: "Customer support & lead handling" },
   { value: "automation", label: "Business workflow automation" },
   { value: "unsure", label: "I am not sure yet" },
 ];
 
 const goalOptions = [
   { value: "present-offer", label: "Present a service or offer more clearly", service: "website", firstStep: "Clarify the audience, offer, key pages, and the next action a visitor should take." },
-  { value: "answer-questions", label: "Answer repeat customer questions", service: "agent", firstStep: "Choose approved information sources, define what the assistant can answer, and set a human hand-off for anything uncertain." },
+  { value: "answer-questions", label: "Answer repeat customer questions", service: "customer-support", firstStep: "Choose approved information sources, define what the assistant can answer, and set a human hand-off for anything uncertain." },
   { value: "follow-up-leads", label: "Capture and follow up with leads", service: "automation", firstStep: "Map where leads arrive, which details are required, who owns each follow-up, and how the record should be stored." },
-  { value: "book-appointments", label: "Collect and coordinate appointment requests", service: "agent", firstStep: "Confirm the calendar, availability rules, time zone, confirmation channel, and exception path before connecting a booking flow." },
+  { value: "book-appointments", label: "Collect and coordinate appointment requests", service: "customer-support", firstStep: "Confirm the calendar, availability rules, time zone, confirmation channel, and exception path before connecting a booking flow." },
   { value: "reduce-admin", label: "Reduce repetitive internal admin", service: "automation", firstStep: "Write down the trigger, information passed between tools, review points, and the person responsible for exceptions." },
   { value: "organize-info", label: "Organize information or reporting", service: "automation", firstStep: "Identify the source data, destination format, reporting cadence, and which decisions still require human review." },
 ];
@@ -46,7 +46,7 @@ function createProjectBrief(form) {
   const service = form.service === "unsure" ? goal.service : form.service;
   const firstRelease = {
     website: "A focused website experience with clear content, responsive layouts, and a visible next step for the visitor.",
-    agent: "A narrowly scoped assistant using approved information, clear limits, and a visible human hand-off.",
+    "customer-support": "A scoped customer-support or lead-handling experience with approved information, clear limits, and a visible human hand-off.",
     automation: "A mapped trigger, information path, review rule, and follow-up owner before any tools are connected.",
   }[service];
 

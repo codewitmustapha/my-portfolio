@@ -1,6 +1,8 @@
-import { Link, useParams } from "react-router-dom";
-import { aiAgentExamples, aiAgentServiceGroups, serviceCategories, websiteDevelopmentServices, workflowAutomationServices, workflowExamples, portfolioProjects } from "../data/portfolio";
+import { useEffect } from "react";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { aiAgentExamples, aiAgentServiceGroups, serviceCategories, websiteDevelopmentServices, workflowAutomationServices, workflowExamples, workflowVisualExamples, portfolioProjects } from "../data/portfolio";
 import { ProjectCard, SectionHeading, SolutionExampleGrid, WorkflowDiagram } from "../components/PortfolioUI";
+import WorkflowShowcase from "../components/WorkflowShowcase";
 import NotFound from "./NotFound";
 
 const serviceContent = {
@@ -15,22 +17,22 @@ const serviceContent = {
     groups: aiAgentServiceGroups,
     examples: {
       items: aiAgentExamples,
-      eyebrow: "Real-world AI agent examples",
-      title: "What an assistant could handle in a typical workday.",
-      copy: "These are illustrative solution examples, not completed client projects or live agents. Knowledge, channel access, privacy, and human hand-off are scoped for each build.",
+      eyebrow: "Customer problems, practical AI support",
+      title: "Help customers get answers and move forward.",
+      copy: "These examples show practical ways AI can help with customer questions and sales follow-up—not completed client work. People approve information, make decisions, and handle enquiries that need a person.",
     },
-    intro: "Give customers and teams a practical assistant for the questions and tasks they handle every day.",
-    note: "AI agents are scoped against approved knowledge, the chosen model and channel, privacy requirements, and a clear human hand-off. Any external system integration is agreed and verified for the specific project.",
+    intro: "Support customer questions, organize enquiries, and guide each request toward a useful next step—with people in control.",
+    note: "Start with the customer or team problem. AI is used only where it helps; approved information, privacy, channel access, and human review are agreed for the specific process.",
     toolHref: "/#project-planner",
-    toolLabel: "Outline an AI agent project",
+    toolLabel: "Plan a customer-support solution",
   },
   "business-workflow-automation": {
     items: workflowAutomationServices,
-    examples: {
-      items: workflowExamples,
-      eyebrow: "Real-world automation examples",
-      title: "Everyday processes, connected step by step.",
-      copy: "These examples show possible workflows, not completed client cases or connected systems. Each app, approval step, and message is agreed and tested for the business using it.",
+      examples: {
+        items: workflowExamples,
+      eyebrow: "More everyday workflows",
+      title: "Other repeat tasks you can simplify.",
+      copy: "These additional examples show possible uses for automation. The apps, approvals, and messages are selected for the process and tested before activation.",
     },
     intro: "Connect the tools you already use and make repeatable business processes easier to run.",
     toolHref: "/#workflow-audit",
@@ -44,8 +46,21 @@ function ServiceItems({ items }) {
 
 export default function ServiceDetail() {
   const { slug } = useParams();
+  const location = useLocation();
   const category = serviceCategories.find((item) => item.slug === slug);
   const content = serviceContent[slug];
+
+  useEffect(() => {
+    if (!location.hash) return undefined;
+    const frame = requestAnimationFrame(() => {
+      const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (!target) return;
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [location.pathname, location.hash]);
+
   if (!category || !content) return <NotFound />;
   const relatedProjects = content.related ? portfolioProjects.filter((project) => content.related.includes(project.slug)) : [];
 
@@ -59,10 +74,16 @@ export default function ServiceDetail() {
           <p className="detail-lead">{content.intro}</p>
           <div className="detail-hero-note"><span>Designed around your process</span><span>Clear scope · Practical build · Thoughtful handover</span></div>
           {content.note && <p className="service-accuracy-note">{content.note}</p>}
-          {content.examples && <a className="detail-example-link" href="#real-world-examples">See real-world examples <span aria-hidden="true">↓</span></a>}
+          {content.examples && <a className="detail-example-link" href="#real-world-examples">See practical examples <span aria-hidden="true">↓</span></a>}
         </div>
       </section>
-      {content.examples && <SolutionExampleGrid {...content.examples} />}
+      {slug === "business-workflow-automation" && <WorkflowShowcase items={workflowVisualExamples} />}
+      {content.examples && slug === "business-workflow-automation" ? (
+        <details className="more-workflow-examples">
+          <summary>Explore eight more everyday workflow examples</summary>
+          <SolutionExampleGrid {...content.examples} id="more-workflow-examples" />
+        </details>
+      ) : content.examples && <SolutionExampleGrid {...content.examples} />}
       <section className="section-pad service-detail-section">
         <div className="section-container">
           <SectionHeading eyebrow="Service menu" title="A focused set of ways I can help." copy="Each engagement starts with your goals, existing tools, and the experience you want customers or staff to have." />

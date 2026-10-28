@@ -56,7 +56,7 @@ export default function ContactSection() {
     <section className="contact-section section-pad" id="contact">
       <div className="section-container contact-grid">
         <div className="contact-intro">
-          <SectionHeading eyebrow="Start a conversation" title="Let’s make your next step easier." copy="Share what you’re trying to improve. We can shape the right website, AI agent, or workflow together." />
+          <SectionHeading eyebrow="Start a conversation" title="Let’s make your next step easier." copy="Share what you’re trying to improve. We can shape the right website, customer-support solution, or workflow together." />
           <div className="contact-direct">
             <span className="contact-direct-label">Prefer a direct message?</span>
             {whatsapp && <a className="button button-whatsapp" href={whatsapp.href} target="_blank" rel="noopener noreferrer">Message me on WhatsApp <span aria-hidden="true">↗</span></a>}
@@ -71,7 +71,7 @@ export default function ContactSection() {
             <label>Name <span>*</span><input name="name" autoComplete="name" value={form.name} onChange={update} required placeholder="Your name" /></label>
             <label>Email <span>*</span><input type="email" name="email" autoComplete="email" value={form.email} onChange={update} required placeholder="you@company.com" /></label>
           </div>
-          <label>What would you like to build? <span>*</span><input name="subject" value={form.subject} onChange={update} required placeholder="Website, AI agent, or workflow" /></label>
+          <label>What would you like to improve or build? <span>*</span><input name="subject" value={form.subject} onChange={update} required placeholder="Website, customer support, or workflow" /></label>
           <label>Tell me a little about it <span>*</span><textarea name="message" value={form.message} onChange={update} required minLength={10} rows={5} placeholder="What is the challenge, and what would a good outcome look like?" /></label>
           <button className="button button-primary form-submit" type="submit" disabled={status === "sending"}>
             {status === "sending" ? "Sending…" : "Send project inquiry"}<span aria-hidden="true">→</span>

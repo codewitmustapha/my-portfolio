@@ -1,6 +1,10 @@
 import imperiumImg from "../assets/optimized/imperium.webp";
 import darulImg from "../assets/optimized/darul.webp";
 import flowSyncImg from "../assets/optimized/newproject5.webp";
+import leadWorkflowImg from "../assets/optimized/workflows/lead-qualification.webp";
+import routingWorkflowImg from "../assets/optimized/workflows/request-routing.webp";
+import multiStepWorkflowImg from "../assets/optimized/workflows/multi-step-process.webp";
+import adminWorkflowImg from "../assets/optimized/workflows/admin-follow-up.webp";
 
 export const serviceCategories = [
   {
@@ -13,13 +17,13 @@ export const serviceCategories = [
       "Modern, responsive websites designed to present your business clearly and help visitors take the next step.",
   },
   {
-    title: "AI Agent Development",
+    title: "AI Customer Support & Lead Handling",
     slug: "ai-agent-development",
-    shortLabel: "AI AGENTS",
-    cardNote: "Assist · Guide · Respond",
+    shortLabel: "AI CUSTOMER SOLUTIONS",
+    cardNote: "Answer · Qualify · Guide",
     href: "/services/ai-agent-development",
     summary:
-      "Helpful AI agents that answer questions, guide customers, and support everyday business tasks.",
+      "Help customers get answers, organize enquiries, and guide each request toward a useful next step—with people in control.",
   },
   {
     title: "Business Workflow Automation",
@@ -77,75 +81,75 @@ export const websiteDevelopmentServices = [
 
 export const aiAgentServiceGroups = [
   {
-    name: "Customer-Facing",
+    name: "Customer & sales support",
     services: [
       {
-        title: "AI Customer Support Agents",
+        title: "Customer questions & FAQ support",
         description:
           "Answer customer questions, explain services, and handle common inquiries with a useful next step.",
       },
       {
-        title: "AI Sales & Lead Conversion Agents",
+        title: "Lead qualification & next-step guidance",
         description:
           "Respond to visitor questions, explain relevant offers, collect contact details, and guide potential customers toward a purchase.",
       },
       {
-        title: "AI Appointment Booking Agents",
+        title: "Appointment request handling",
         description:
-          "Collect booking requests, check availability, schedule appointments, and send confirmations when the required calendar and messaging integrations are configured.",
+      "Collect appointment details and prepare booking requests; live availability checks, scheduling, and confirmations require the relevant calendar and messaging connections.",
       },
       {
-        title: "WhatsApp AI Agents",
+        title: "WhatsApp customer support",
         description:
-          "Assist customers through WhatsApp conversations, such as answering questions or collecting requests.",
+      "Answer approved routine questions or collect customer requests through WhatsApp when the channel connection is configured.",
       },
       {
-        title: "Telegram AI Agents",
+        title: "Telegram customer support",
         description:
-          "Respond to Telegram messages, collect inquiries, and help users complete supported tasks through Telegram conversations.",
+      "Respond to routine Telegram enquiries or collect requests when the channel connection is configured.",
       },
       {
-        title: "AI E-commerce Shopping Assistants",
+        title: "Product & service guidance",
         description:
           "Recommend products, answer product questions, and guide shoppers toward items that match their needs.",
       },
       {
-        title: "AI Knowledge Base Assistants",
+        title: "Business knowledge assistance",
         description:
           "Answer questions using a business’s approved FAQs, documents, policies, and internal information.",
       },
     ],
   },
   {
-    name: "Advanced",
+    name: "Team & operations support",
     services: [
       {
-        title: "AI Voice Agents",
+        title: "Voice inquiry handling",
         description:
           "Answer calls, handle basic spoken customer inquiries, and assist with appointment booking where the required voice and scheduling services are configured.",
       },
       {
-        title: "AI Customer Onboarding Agents",
+        title: "Customer onboarding support",
         description:
           "Collect customer information and guide new customers through onboarding and initial setup steps.",
       },
       {
-        title: "AI Email Assistants",
+        title: "Email triage & reply preparation",
         description:
           "Classify incoming emails, summarize messages, draft replies, and route requests for review or follow-up.",
       },
       {
-        title: "AI Recruitment Assistants",
+        title: "Recruitment application organization",
         description:
           "Organize applications and assist with candidate screening against criteria defined by the business.",
       },
       {
-        title: "AI Review Management Assistants",
+        title: "Review & feedback organization",
         description:
           "Categorize customer feedback and help businesses prepare responses to reviews.",
       },
       {
-        title: "AI CRM Assistants",
+        title: "CRM update & follow-up assistance",
         description:
           "Help manage customer records, sales opportunities, and follow-up activities within a defined CRM process.",
       },
@@ -218,32 +222,79 @@ export const workflowAutomationServices = [
 
 export const aiAgentExamples = [
   {
-    title: "Website & WhatsApp customer assistant",
+    title: "Answer customer questions across website and WhatsApp",
     situation: "A potential customer asks about services after business hours and wants to know what to do next.",
     steps: ["Ask a question", "Get an answer from approved business information", "Share details or request a next step", "Hand complex questions to a person"],
     helpsWith: "Responding to routine questions while keeping a clear human hand-off.",
     scopeNote: "Website knowledge and WhatsApp access are selected and tested for each project.",
   },
   {
-    title: "Appointment booking assistant",
+    title: "Collect appointment details and reduce back-and-forth",
     situation: "A salon, consultant, or service business receives booking requests while staff are busy.",
     steps: ["Choose a service", "Share preferred date and time", "Check an approved calendar", "Send confirmation and reminders"],
     helpsWith: "Collecting complete booking requests and reducing manual back-and-forth.",
     scopeNote: "Calendar checks and message sending require the relevant integrations to be connected and verified.",
   },
   {
-    title: "Sales & lead qualification assistant",
+    title: "Qualify enquiries before the team follows up",
     situation: "A business wants to understand what a new enquiry needs before a person follows up.",
     steps: ["Ask about the goal", "Collect timeline and key requirements", "Summarize the request", "Route it to the right person for review"],
     helpsWith: "Giving the team clearer context for a timely, relevant follow-up.",
     scopeNote: "Qualification questions and routing rules are agreed with the business; a person can review every enquiry.",
   },
   {
-    title: "Online-store product guide",
+    title: "Help shoppers find a suitable product",
     situation: "A shopper is unsure which product or plan fits their needs.",
     steps: ["Ask what the shopper is looking for", "Answer from approved product details", "Suggest a relevant option", "Link to checkout or a person"],
     helpsWith: "Helping shoppers compare options without claiming that a product is available unless inventory is connected.",
     scopeNote: "Catalog, pricing, and stock information are only treated as live when the store integration is connected and tested.",
+  },
+];
+
+export const workflowVisualExamples = [
+  {
+    id: "lead-qualification",
+    navLabel: "Qualify leads",
+    title: "Capture and qualify new enquiries",
+    image: leadWorkflowImg,
+    alt: "Wide workflow diagram showing an incoming lead, data cleanup and business rules, an AI-assisted qualification step, and different follow-up branches.",
+    caption: "Lead intake → organize details → assist qualification → route the next step. The diagram is an example design; any connected tools must be configured and tested for the business.",
+    problem: "New enquiries arrive, but the team needs a clearer way to organize each request and decide what should happen next.",
+    steps: ["Capture an enquiry from an approved source", "Check and organize its key details", "Use agreed rules or AI to help classify the request", "Send the result to a person or follow-up path for review"],
+    outcome: "Give the team a consistent starting point for timely, informed follow-up—without removing human oversight.",
+  },
+  {
+    id: "request-routing",
+    navLabel: "Route requests",
+    title: "Send each request to the right next step",
+    image: routingWorkflowImg,
+    alt: "Workflow diagram with one incoming business process branching into several possible routes and follow-up actions.",
+    caption: "One intake point → check the request → choose a route → notify the appropriate person or system. The exact branches depend on the business rules.",
+    problem: "Different enquiries need different owners, responses, or approval steps, and manual sorting can slow the hand-off.",
+    steps: ["Receive the request", "Apply the agreed conditions", "Route it to the correct queue or owner", "Record the hand-off and notify the right person"],
+    outcome: "Make the next action easier to see and reduce requests getting lost between people or tools.",
+  },
+  {
+    id: "multi-step-process",
+    navLabel: "Connect workflows",
+    title: "Connect a multi-step business process",
+    image: multiStepWorkflowImg,
+    alt: "Extra-wide automation workflow diagram showing a long sequence of connected steps, decision branches, and downstream app actions.",
+    caption: "Trigger → process information → make a decision → update connected tools → notify the people involved. Each connection is selected and tested for the actual process.",
+    problem: "A task crosses multiple apps or people, so information gets re-entered and progress is hard to follow.",
+    steps: ["Start from an approved form or business event", "Move and validate the required information", "Apply decision rules and approval points", "Update the agreed systems and share a status"],
+    outcome: "Give a repeat process a clearer path from start to finish, with people kept in the loop.",
+  },
+  {
+    id: "admin-follow-up",
+    navLabel: "Reduce repeat admin",
+    title: "Reduce repeated admin and follow-up",
+    image: adminWorkflowImg,
+    alt: "Workflow screenshot containing several smaller automations for recurring business notifications, records, and follow-up tasks.",
+    caption: "A recurring event can update a record, prepare a reminder, or send an approved notification—based on the business’s timing and stop rules.",
+    problem: "Staff repeat small updates and reminders by hand, even when the same steps happen every time.",
+    steps: ["Notice the agreed trigger or schedule", "Update the relevant record", "Prepare the reminder or notification", "Pause, route, or ask for approval when needed"],
+    outcome: "Reduce routine hand-offs while keeping approvals and customer communication under business control.",
   },
 ];
 
@@ -415,7 +466,7 @@ export const about = {
   tools: ["HTML", "CSS", "JavaScript", "React", "WordPress", "AI Tools"],
   availability: "Currently accepting freelance projects.",
   description:
-    "I build websites, AI agents, and automated workflows to help businesses present their services, support customers, and reduce repetitive work.",
+    "I build websites and practical customer-support and business workflows to help businesses serve customers clearly and reduce repetitive work.",
 };
 
 export const contactLinks = [

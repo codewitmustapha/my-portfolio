@@ -62,9 +62,9 @@ export function WorkflowDiagram({ steps = [] }) {
   );
 }
 
-export function SolutionExampleGrid({ items = [], eyebrow, title, copy }) {
+export function SolutionExampleGrid({ items = [], eyebrow, title, copy, id = "real-world-examples" }) {
   return (
-    <section className="section-pad solution-examples" id="real-world-examples">
+    <section className="section-pad solution-examples" id={id}>
       <div className="section-container">
         <SectionHeading eyebrow={eyebrow} title={title} copy={copy} />
         <div className="solution-example-grid">
