@@ -36,6 +36,30 @@ export const serviceCategories = [
   },
 ];
 
+export const homepageHelpServices = [
+  {
+    number: "01",
+    title: "Websites That Convert",
+    description: "Modern, responsive business websites designed to build trust, present services clearly, and generate customer enquiries.",
+    href: "/services/website-development",
+    visual: "website",
+  },
+  {
+    number: "02",
+    title: "AI Customer Support",
+    description: "AI-powered assistants that can answer frequently asked questions, capture leads, and help businesses handle customer enquiries.",
+    href: "/services/ai-agent-development",
+    visual: "support",
+  },
+  {
+    number: "03",
+    title: "Business Workflow Automation",
+    description: "Automated workflows for lead tracking, appointment handling, notifications, content workflows, and other repetitive business tasks.",
+    href: "/services/business-workflow-automation",
+    visual: "workflow",
+  },
+];
+
 export const websiteDevelopmentServices = [
   {
     title: "Business Websites",

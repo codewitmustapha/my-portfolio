@@ -10,7 +10,7 @@ export default function Footer() {
           <p>Websites, useful AI, and workflows—built around the way your business works.</p>
         </div>
         <nav className="footer-nav" aria-label="Footer navigation">
-          <Link to="/#services">Services</Link><Link to="/#projects">Selected work</Link><Link to="/#tools">Planning tools</Link><Link to="/#contact">Contact</Link>
+          <Link to="/#services">Services</Link><Link to="/#projects">Selected work</Link><Link to="/#how-i-help">How I help</Link><Link to="/#contact">Contact</Link>
         </nav>
         <div className="footer-socials" aria-label="Contact and social links">
           {contactLinks.map(({ label, href }) => <a key={label} href={href} target="_blank" rel="noopener noreferrer">{label}<span aria-hidden="true">↗</span></a>)}

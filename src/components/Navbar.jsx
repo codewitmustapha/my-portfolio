@@ -5,7 +5,7 @@ const navItems = [
   { label: "Services", to: "/#services" },
   { label: "Solutions", to: "/services/business-workflow-automation#real-world-examples", solution: true },
   { label: "Selected work", to: "/#projects" },
-  { label: "Tools", to: "/#tools" },
+  { label: "How I help", to: "/#how-i-help" },
   { label: "Process", to: "/#process" },
   { label: "About", to: "/#about" },
 ];

@@ -1,10 +1,9 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import profileImage from "../assets/profile1.jpeg";
-import { serviceCategories, portfolioProjects, processSteps, testimonials, about, contactLinks, workflowVisualExamples } from "../data/portfolio";
+import profileImage from "../assets/optimized/salawudeen-portrait.jpg";
+import { serviceCategories, homepageHelpServices, portfolioProjects, processSteps, testimonials, about, contactLinks, workflowVisualExamples } from "../data/portfolio";
 import ContactSection from "../components/ContactSection";
 import { ProjectCard, SectionHeading, ServiceCard } from "../components/PortfolioUI";
-import { ProjectPlanner, WorkflowTimeAudit } from "../components/InteractiveTools";
 
 const projectFilters = ["All Work", "Websites", "Interface Concepts"];
 
@@ -73,6 +72,58 @@ function ProcessSection() {
             </li>
           ))}
         </ol>
+      </div>
+    </section>
+  );
+}
+
+function ServiceMark({ type }) {
+  if (type === "website") {
+    return <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="5" y="7" width="30" height="26" rx="2" /><path d="M5 14h30M10 10.5h.1M13 10.5h.1M16 10.5h.1M11 20h17M11 24h13M11 28h9" /></svg>;
+  }
+  if (type === "support") {
+    return <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M7 8h26v19H20l-8 6v-6H7z" /><circle cx="14" cy="18" r="1" /><circle cx="20" cy="18" r="1" /><circle cx="26" cy="18" r="1" /></svg>;
+  }
+  return <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M7 11h11v18H7zM22 7h11v8H22zM22 24h11v9H22zM18 20h4M18 11h4M18 29h4" /><circle cx="12.5" cy="20" r="1" /><circle cx="27.5" cy="11" r="1" /><circle cx="27.5" cy="28.5" r="1" /></svg>;
+}
+
+function HowIHelpSection() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return undefined;
+    const rows = section.querySelectorAll(".help-row");
+    section.classList.add("help-section--reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: "0px 0px -24px 0px" });
+    rows.forEach((row) => observer.observe(row));
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section className="help-section section-pad" id="how-i-help" ref={sectionRef}>
+      <div className="section-container">
+        <SectionHeading eyebrow="What I do" title="How I Help Businesses" copy="Thoughtful digital work to earn trust, support customers, and make everyday business tasks easier." />
+        <div className="help-rows">
+          {homepageHelpServices.map((service) => (
+            <article className="help-row" key={service.number}>
+              <span className="help-number">{service.number}</span>
+              <div className="help-copy">
+                <div className="help-title-row"><ServiceMark type={service.visual} /><h3>{service.title}</h3></div>
+                <p>{service.description}</p>
+              </div>
+              <Link className="help-service-link" to={service.href}>Explore service <span aria-hidden="true">↗</span></Link>
+            </article>
+          ))}
+        </div>
+        <div className="help-cta-row"><a className="button button-primary" href="#contact">Discuss a Project <span aria-hidden="true">↗</span></a></div>
       </div>
     </section>
   );
@@ -150,18 +201,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="tools-section section-pad" id="tools">
-        <div className="section-container">
-          <div className="tools-intro">
-            <SectionHeading eyebrow="Practical tools" title="Make your next step clearer." copy="Build a project starter from your goals, or calculate the time tied up in a recurring task." />
-            <p className="tools-intro-note">A clearer first conversation starts with a good question.</p>
-          </div>
-          <div className="tools-grid">
-            <ProjectPlanner />
-            <WorkflowTimeAudit />
-          </div>
-        </div>
-      </section>
+      <HowIHelpSection />
 
       <ProcessSection />
       <AboutSection />

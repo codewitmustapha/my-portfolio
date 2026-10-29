@@ -10,8 +10,6 @@ const serviceContent = {
     items: websiteDevelopmentServices,
     intro: "Build a useful, clear web presence that supports how customers discover and choose your business.",
     related: ["imperium-art-decor", "darul-arqam-islamic-bookshop", "flowsync"],
-    toolHref: "/#project-planner",
-    toolLabel: "Use the project planner",
   },
   "ai-agent-development": {
     groups: aiAgentServiceGroups,
@@ -23,8 +21,6 @@ const serviceContent = {
     },
     intro: "Support customer questions, organize enquiries, and guide each request toward a useful next step—with people in control.",
     note: "Start with the customer or team problem. AI is used only where it helps; approved information, privacy, channel access, and human review are agreed for the specific process.",
-    toolHref: "/#project-planner",
-    toolLabel: "Plan a customer-support solution",
   },
   "business-workflow-automation": {
     items: workflowAutomationServices,
@@ -35,8 +31,6 @@ const serviceContent = {
       copy: "These additional examples show possible uses for automation. The apps, approvals, and messages are selected for the process and tested before activation.",
     },
     intro: "Connect the tools you already use and make repeatable business processes easier to run.",
-    toolHref: "/#workflow-audit",
-    toolLabel: "Run the workflow time audit",
   },
 };
 
@@ -96,8 +90,8 @@ export default function ServiceDetail() {
           <WorkflowDiagram steps={["Understand the need", "Plan a practical approach", "Build and test", "Deliver with guidance"]} />
         </div>
       </section>
-      <section className="service-tool-cta section-pad">
-        <div className="section-container service-tool-cta-inner"><div><p className="eyebrow">A useful first step</p><h2>Start with your actual process.</h2><p>Use a short planning tool to organize the questions before deciding what to build.</p></div><Link className="button button-primary" to={content.toolHref}>{content.toolLabel} <span aria-hidden="true">↗</span></Link></div>
+      <section className="service-contact-cta section-pad">
+        <div className="section-container service-contact-cta-inner"><div><p className="eyebrow">Discuss your project</p><h2>Talk through the problem you want to solve.</h2><p>Share what you want your website, customer support, or workflow to do, and we can work out a practical next step.</p></div><Link className="button button-primary" to="/#contact">Discuss a Project <span aria-hidden="true">↗</span></Link></div>
       </section>
       {relatedProjects.length > 0 && <section className="section-pad related-work-section"><div className="section-container"><SectionHeading eyebrow="Related website work" title="Explore projects in this area." /><div className="project-grid related-project-grid">{relatedProjects.map((project) => <ProjectCard key={project.slug} project={project} />)}</div></div></section>}
       <section className="detail-cta section-pad"><div className="section-container detail-cta-inner"><div><p className="eyebrow">NEXT STEP</p><h2>Have a challenge in mind?</h2><p>Share a little about your business and we can work out what fits.</p></div><Link className="button button-primary" to="/#contact">Let’s Work Together <span aria-hidden="true">↗</span></Link></div></section>

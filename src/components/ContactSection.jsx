@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { contactLinks } from "../data/portfolio";
 import { SectionHeading } from "./PortfolioUI";
 
@@ -9,19 +9,6 @@ export default function ContactSection() {
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
-
-  useEffect(() => {
-    function handlePrefill(event) {
-      const subject = typeof event.detail?.subject === "string" ? event.detail.subject : "Project inquiry";
-      const message = typeof event.detail?.message === "string" ? event.detail.message : "";
-      setForm((current) => ({ ...current, subject, message }));
-      setStatus("idle");
-      setError("");
-      window.setTimeout(() => document.querySelector('#contact input[name="subject"]')?.focus({ preventScroll: true }), 220);
-    }
-    window.addEventListener("portfolio:prefill-contact", handlePrefill);
-    return () => window.removeEventListener("portfolio:prefill-contact", handlePrefill);
-  }, []);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -76,7 +63,7 @@ export default function ContactSection() {
           <button className="button button-primary form-submit" type="submit" disabled={status === "sending"}>
             {status === "sending" ? "Sending…" : "Send project inquiry"}<span aria-hidden="true">→</span>
           </button>
-          <p className="form-note">The planning tools do not send or save your inputs. This form is sent only when you choose to submit it.</p>
+          <p className="form-note">Your message is sent only when you choose to submit this form.</p>
         </form>
       </div>
     </section>
