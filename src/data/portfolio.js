@@ -14,7 +14,7 @@ export const serviceCategories = [
     cardNote: "Design · Build · Improve",
     href: "/services/website-development",
     summary:
-      "Modern, responsive websites designed to present your business clearly and help visitors take the next step.",
+      "Professional websites designed to present your business clearly, build trust, and encourage visitors to take the next step.",
   },
   {
     title: "AI Customer Support & Lead Handling",
@@ -23,7 +23,7 @@ export const serviceCategories = [
     cardNote: "Answer · Qualify · Guide",
     href: "/services/ai-agent-development",
     summary:
-      "Help customers get answers, organize enquiries, and guide each request toward a useful next step—with people in control.",
+      "Help customers get answers, capture enquiries, qualify leads, and guide requests toward the right next step.",
   },
   {
     title: "Business Workflow Automation",
@@ -32,7 +32,7 @@ export const serviceCategories = [
     cardNote: "Connect · Organize · Follow up",
     href: "/services/business-workflow-automation",
     summary:
-      "Connected workflows that reduce repetitive work and keep information and follow-ups moving.",
+      "Connect your business tools and automate repetitive work so information, notifications, and follow-ups keep moving.",
   },
 ];
 
@@ -435,27 +435,21 @@ export const testimonials = [
 
 export const processSteps = [
   {
-    title: "Discover",
-    description: "Understand the business, its challenges, and its goals.",
+    title: "Understand",
+    description: "Understand the business, its customers, and the repetitive tasks or website problems that need solving.",
   },
   {
     title: "Plan",
-    description:
-      "Identify the right website, AI solution, or automation workflow.",
+    description: "Choose a practical approach based on the business requirements.",
   },
   {
-    title: "Build",
-    description: "Develop and configure the solution.",
-  },
-  {
-    title: "Test",
-    description:
-      "Verify the experience, integrations, and expected behavior.",
+    title: "Build and Test",
+    description: "Develop the website or workflow and test the relevant functionality.",
   },
   {
     title: "Deliver",
     description:
-      "Provide the finished solution and explain how to use it.",
+      "Provide the completed solution and explain how to use it.",
   },
 ];
 

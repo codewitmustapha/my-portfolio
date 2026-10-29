@@ -56,7 +56,7 @@ export default function ContactSection() {
     <section className="contact-section section-pad" id="contact">
       <div className="section-container contact-grid">
         <div className="contact-intro">
-          <SectionHeading eyebrow="Start a conversation" title="Let’s make your next step easier." copy="Share what you’re trying to improve. We can shape the right website, customer-support solution, or workflow together." />
+          <SectionHeading eyebrow="Start a conversation" title="Let’s Build Something That Works for Your Business." copy="Tell me what you want to improve, what tasks are taking too much time, or what your website should accomplish. Let’s explore a practical solution." />
           <div className="contact-direct">
             <span className="contact-direct-label">Prefer a direct message?</span>
             {whatsapp && <a className="button button-whatsapp" href={whatsapp.href} target="_blank" rel="noopener noreferrer">Message me on WhatsApp <span aria-hidden="true">↗</span></a>}

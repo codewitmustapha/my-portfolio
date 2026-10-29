@@ -93,7 +93,7 @@ export default function ServiceDetail() {
       <section className="section-pad workflow-explainer">
         <div className="section-container workflow-explainer-grid">
           <div><SectionHeading eyebrow="A sensible starting point" title="Make the process clearer before adding complexity." copy="Map the current experience, identify where effort is lost, then choose the smallest useful improvement. Integrations are scoped and tested before being described as live." /></div>
-          <WorkflowDiagram steps={["Understand the need", "Choose the right solution", "Build and connect", "Test with real scenarios", "Deliver with guidance"]} />
+          <WorkflowDiagram steps={["Understand the need", "Plan a practical approach", "Build and test", "Deliver with guidance"]} />
         </div>
       </section>
       <section className="service-tool-cta section-pad">

@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import profileImage from "../assets/profile1.jpeg";
-import { serviceCategories, portfolioProjects, processSteps, testimonials, about } from "../data/portfolio";
+import { serviceCategories, portfolioProjects, processSteps, testimonials, about, contactLinks, workflowVisualExamples } from "../data/portfolio";
 import ContactSection from "../components/ContactSection";
 import { ProjectCard, SectionHeading, ServiceCard } from "../components/PortfolioUI";
 import { ProjectPlanner, WorkflowTimeAudit } from "../components/InteractiveTools";
@@ -16,28 +16,23 @@ function matchesProjectFilter(project, filter) {
 }
 
 function HeroWorkGallery() {
-  const featured = [portfolioProjects[1], portfolioProjects[0], portfolioProjects[2]];
-  const [main, ...side] = featured;
+  const project = portfolioProjects[0];
+  const workflow = workflowVisualExamples[0];
 
   return (
-    <div className="hero-gallery" aria-label="Selected screenshots from two website projects and one interface concept">
-      <div className="hero-gallery-topline"><span>SELECTED WORK</span><span>01 — 03</span></div>
-      <div className="hero-gallery-board">
-        <Link to={`/projects/${main.slug}`} className="hero-gallery-main" aria-label={`View ${main.title}`}>
-          <img src={main.image} alt={`${main.title} ${main.kind === "Concept Project" ? "interface concept" : "website"} screenshot`} fetchPriority="high" />
-          <span className="hero-image-caption"><strong>{main.title}</strong><small>{main.tags.join(" · ")}</small></span>
-        </Link>
-        <div className="hero-gallery-stack">
-          {side.map((project) => (
-            <Link to={`/projects/${project.slug}`} className="hero-gallery-small" key={project.slug} aria-label={`View ${project.title}`}>
-              <img src={project.image} alt={`${project.title} ${project.kind === "Concept Project" ? "interface concept" : "website"} screenshot`} />
-              <span className="hero-image-caption"><strong>{project.title}</strong><small>{project.kind === "Concept Project" ? "Interface concept" : project.tags.join(" · ")}</small></span>
-            </Link>
-          ))}
-        </div>
-      </div>
-      <div className="hero-gallery-foot"><span>Real work, shown as it is.</span><Link to="/#projects">See all selected work <span aria-hidden="true">↘</span></Link></div>
-    </div>
+    <aside className="hero-gallery" aria-label="A real website project and an illustrative workflow example">
+      <div className="hero-gallery-topline"><span>FEATURED WEBSITE</span><span>REAL PROJECT</span></div>
+      <Link to={`/projects/${project.slug}`} className="hero-featured-link" aria-label={`View ${project.title} project details`}>
+        <img src={project.image} alt={`${project.title} website screenshot`} fetchPriority="high" />
+        <span className="hero-image-caption"><small>{project.kind}</small><strong>{project.title}</strong></span>
+      </Link>
+      <div className="hero-gallery-foot"><span>{project.tags.join(" · ")}</span><Link to={`/projects/${project.slug}`}>View project <span aria-hidden="true">→</span></Link></div>
+      <Link to={`/services/business-workflow-automation#workflow-example-${workflow.id}`} className="hero-workflow-proof" aria-label={`View illustrative workflow example: ${workflow.title}`}>
+        <img src={workflow.image} alt="" loading="lazy" />
+        <span className="hero-workflow-copy"><span>Illustrative workflow example</span><strong>Lead qualification</strong><small>From a new enquiry to a clear next step.</small></span>
+        <span className="hero-workflow-arrow" aria-hidden="true">↗</span>
+      </Link>
+    </aside>
   );
 }
 
@@ -68,7 +63,7 @@ function ProcessSection() {
   return (
     <section className="process-section section-pad" id="process">
       <div className="section-container">
-        <SectionHeading eyebrow="How I work" title="A clear path from idea to delivery." copy="The right solution starts with understanding the real problem—not adding tools for the sake of it." align="center" />
+        <SectionHeading eyebrow="How I work" title="From Business Problem to Practical Solution" copy="Understand the need, choose a useful approach, build and test it, then hand it over clearly." align="center" />
         <ol className="process-list">
           {processSteps.map((step, index) => (
             <li className="process-item" key={step.title}>
@@ -105,6 +100,7 @@ function TestimonialsSection() {
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState("All Work");
   const visibleProjects = useMemo(() => portfolioProjects.filter((project) => matchesProjectFilter(project, activeFilter)), [activeFilter]);
+  const whatsapp = contactLinks.find((item) => item.label === "WhatsApp");
 
   return (
     <>
@@ -114,11 +110,12 @@ export default function Home() {
           <div className="hero-copy">
             <p className="eyebrow hero-eyebrow">WEBSITE DEVELOPMENT <b>•</b> CUSTOMER SUPPORT AI <b>•</b> WORKFLOW AUTOMATION</p>
             <h1>Websites That Convert.<br /><span>AI That Automates.</span></h1>
-            <p className="hero-description">I build modern websites, customer-support and lead-handling solutions, and connected workflows that help businesses respond clearly and reduce repeat work.</p>
-            <p className="hero-description hero-description-secondary">Start with the problem—missed enquiries, repetitive questions, or manual follow-ups—and shape a practical digital solution around it.</p>
+            <p className="hero-description">I build professional websites, AI-powered customer support systems, and automated workflows that help businesses capture enquiries, serve customers, and reduce repetitive work.</p>
+            <p className="hero-description hero-description-secondary">Start with the problem — missed enquiries, repetitive questions, or manual follow-ups — and shape a practical digital solution around it.</p>
             <div className="hero-actions">
               <a className="button button-primary" href="#contact">Let’s Work Together <span aria-hidden="true">↗</span></a>
               <a className="button button-quiet" href="#projects">Explore My Work <span aria-hidden="true">↓</span></a>
+              {whatsapp && <a className="hero-whatsapp" href={whatsapp.href} target="_blank" rel="noopener noreferrer">Message me on WhatsApp <span aria-hidden="true">↗</span></a>}
             </div>
             <div className="hero-footnote"><span className="status-indicator" /> Lagos, Nigeria <span className="footnote-separator">·</span> Available for freelance projects</div>
           </div>

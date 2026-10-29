@@ -30,7 +30,7 @@ export function ProjectCard({ project }) {
     <article className="project-card">
       <Link to={`/projects/${project.slug}`} className="project-visual-link" aria-label={`View ${project.title} project details`}>
         <div className="project-visual">
-          <img src={project.image} alt={`${project.title} website screenshot`} loading="lazy" />
+          <img src={project.image} alt={`${project.title} ${project.kind === "Concept Project" ? "interface concept" : "website"} screenshot`} loading="lazy" />
           <span className={`project-kind ${project.kind === "Concept Project" ? "project-kind-concept" : ""}`}>{project.kind}</span>
         </div>
       </Link>
